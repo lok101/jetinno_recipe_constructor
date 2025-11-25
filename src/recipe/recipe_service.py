@@ -13,7 +13,7 @@ class RecipeStep(BaseModel):
     water_volume: Annotated[int, Field(serialization_alias="waterVolume")]
     canister_id: Annotated[int, Field(serialization_alias="canisterId")]
 
-    component_weight: Annotated[int, Field(serialization_alias="gradientWeight", default=None)]
+    component_weight: Annotated[int | None, Field(serialization_alias="gradientWeight", default=None)]
     mix_speed: Annotated[int, Field(serialization_alias="mixSpeed", default=None)]
     temp_type: Annotated[int, Field(serialization_alias="tempType", default=None)]
     discharge_speed: Annotated[int, Field(serialization_alias="dischargeSpeed", default=None)]
@@ -40,7 +40,7 @@ class RecipeService:
         res = []
 
         for item in products_data:
-            drink = self._drink_service.get_drink_or_ex(item.drink_id)
+            drink = self._drink_service.get_drink_or_ex(item.full_name)
             recipe = self._create_jetinno_recipe(drink)
             res.append(recipe)
 

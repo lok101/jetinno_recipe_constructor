@@ -17,6 +17,7 @@ class BaseStep(BaseModel):
 class WaterStep(BaseStep):
     name: str = "Вода"
     canister_id: int = 0
+    component_weight: None
 
 
 class CoffeeStep(BaseStep):

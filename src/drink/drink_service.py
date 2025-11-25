@@ -10,11 +10,11 @@ class DrinkService:
         self._step_dispatcher = step_dispatcher
         self._drinks_repository = drinks_repository
 
-    def get_drink_or_ex(self, drink_id: int) -> Drink:
-        drink = self._drinks_repository.get(drink_id)
+    def get_drink_or_ex(self, drink_name: str) -> Drink:
+        drink = self._drinks_repository.get(drink_name)
 
         if drink is None:
-            raise Exception(f"Не найден напиток с переданным номером: {drink_id}.")
+            raise Exception(f"Не найден напиток с переданным именем: {drink_name}.")
 
         return drink
 
@@ -32,6 +32,7 @@ class DrinkService:
                 step_data["order"] = i
                 step_data["canister_id"] = get_canister_id(machine_model=machine_model, component_name=component_name)
                 step_data["discharge_speed"] = get_discharge_speed(
+                    drink_name=drink_model.full_name,
                     component_name=component_name,
                     component_weight=step_model.component_weight,
                     water_volume=step_model.water_volume

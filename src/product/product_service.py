@@ -35,7 +35,7 @@ class ProductService:
         res = []
 
         for i, item in enumerate(products_data, 1):
-            drink = self._drink_service.get_drink_or_ex(item.drink_id)
+            drink = self._drink_service.get_drink_or_ex(item.full_name)
             drink_data = drink.model_dump()
 
             drink_data["order"] = i

@@ -36,7 +36,7 @@ def get_drinks_data(sheet_name: str = "Напитки") -> list[DrinkModel]:
 
 
 def get_products_data(sheet_name: str) -> list[ProductModel]:
-    headers = ["visible", "matrix_id", "drink_id", "full_name", "price"]
+    headers = ["visible", "matrix_id", "full_name", "price"]
     data = get_google_sheets_data(sheet_name)
 
     res = []

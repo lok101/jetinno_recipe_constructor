@@ -10,6 +10,7 @@ from src.enums import TempType, CupType
 
 class Drink(BaseModel):
     id: int
+    full_name: str
     name: str
     capacity: int
     cup_type: CupType
