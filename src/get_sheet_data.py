@@ -26,8 +26,7 @@ def get_drinks_data(sheet_name: str = "Напитки") -> list[DrinkModel]:
                 "component_weight": steps[i + 1],
                 "water_volume": steps[i + 2],
             }
-            for i in range(0, len(steps), 3)
-            if i + 2 < len(steps)
+            for i in range(0, len(steps), 3) if steps[i] and i + 2 < len(steps)
         ]
 
         drink_model = DrinkModel.model_validate(drink_data)

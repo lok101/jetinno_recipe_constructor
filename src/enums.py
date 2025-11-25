@@ -13,8 +13,10 @@ class CupType(enum.IntEnum):
 
 
 class IntensityVariable(enum.IntEnum):
+    """???"""
+    AS_CONTAINER_OPTION = 0
     ENABLE = 1
-    DISABLE = 0
+    DISABLE = 2
 
 
 class MixSpeed(enum.IntEnum):

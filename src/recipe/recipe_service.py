@@ -11,13 +11,15 @@ class RecipeStep(BaseModel):
     name: Annotated[str, Field(serialization_alias="component_name")]
     order: Annotated[int, Field(serialization_alias="recipeOutOrder")]
     water_volume: Annotated[int, Field(serialization_alias="waterVolume")]
+    canister_id: Annotated[int, Field(serialization_alias="canisterId")]
 
     component_weight: Annotated[int, Field(serialization_alias="gradientWeight", default=None)]
     mix_speed: Annotated[int, Field(serialization_alias="mixSpeed", default=None)]
     temp_type: Annotated[int, Field(serialization_alias="tempType", default=None)]
     discharge_speed: Annotated[int, Field(serialization_alias="dischargeSpeed", default=None)]
 
-    is_showed: Annotated[bool, Field(serialization_alias="isShowed", default=True)]
+    is_showed: Annotated[
+        int, Field(serialization_alias="isShowed", default=True, validation_alias="is_intensity_variable")]
     add_recipe_tyme: Annotated[int, Field(serialization_alias="addRecipeTime", default=0)]
     delay_time: Annotated[int, Field(serialization_alias="delayTime", default=60)]
 

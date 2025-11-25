@@ -70,4 +70,12 @@ def get_discharge_speed(component_name: str, component_weight: int, water_volume
 
     speed_step = (max_gr - min_gr) / (max_step - min_step)
     speed_regulator_number = math.ceil((gr_per_second - min_gr) / speed_step)
-    return speeds_list[speed_regulator_number]
+
+    try:
+        discharge_speed = speeds_list[speed_regulator_number]
+
+    except IndexError:
+        print(f"Требуемая скорость: {gr_per_second}. Максимальная: {max_gr}.")
+        return speeds_list[-1]
+
+    return discharge_speed

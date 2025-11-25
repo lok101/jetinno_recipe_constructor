@@ -20,7 +20,7 @@ class Drink(BaseModel):
     enable: bool = True
     best_sell: bool = False
     save_out: bool = False
-    is_checked: bool = False
+    is_checked: bool = True
     make_time: int = 70
 
     @computed_field
