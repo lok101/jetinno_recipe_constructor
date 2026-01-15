@@ -2,6 +2,8 @@ import gspread
 
 from src.models import DrinkModel, ProductModel
 
+STEP_BLOCK_SIZE = 4
+
 
 def get_google_sheets_data(worksheet_name: str, spreadsheet_name: str = 'Конструктор JL'):
     client = gspread.service_account()
@@ -11,7 +13,7 @@ def get_google_sheets_data(worksheet_name: str, spreadsheet_name: str = 'Кон�
 
 
 def get_drinks_data(sheet_name: str = "Напитки") -> list[DrinkModel]:
-    headers = ["id", "full_name", "updated", "name", "capacity", "cup_type"]
+    headers = ["id", "full_name", "updated", "name", "capacity", "cup_type", "all_water"]
     data = get_google_sheets_data(sheet_name)
 
     res = []
@@ -26,7 +28,7 @@ def get_drinks_data(sheet_name: str = "Напитки") -> list[DrinkModel]:
                 "component_weight": steps[i + 1],
                 "water_volume": steps[i + 2],
             }
-            for i in range(0, len(steps), 3) if steps[i] and i + 2 < len(steps)
+            for i in range(0, len(steps), STEP_BLOCK_SIZE) if steps[i] and i + 2 < len(steps)
         ]
 
         drink_model = DrinkModel.model_validate(drink_data)

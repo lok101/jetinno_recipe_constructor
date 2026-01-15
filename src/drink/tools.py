@@ -41,17 +41,24 @@ def get_discharge_speed(drink_name: str, component_name: str, component_weight: 
 
     (min_step, min_gr), (max_step, max_gr) = cds
 
-    step_time = water_volume / WATER_ML_REP_SECOND - 2
+    step_time = water_volume / WATER_ML_REP_SECOND - 1
     gr_per_second = component_weight / step_time
-
-    if gr_per_second < min_gr:
-        return speeds_list[0]
 
     linear_k = (max_gr - min_gr) / (max_step - min_step)
     linear_b = max_gr - max_step * linear_k
 
-    speed = math.ceil((gr_per_second - linear_b) / linear_k)
-    speed_index = speed - 1
+    speed = (gr_per_second - linear_b) / linear_k
+
+    if speed % 1 < 0.2:
+        print(
+            f"Компонент \"{component_name}\" в напитке \"{drink_name}\", "
+            f"слишком большой разрыв скорости подачи. Возможно большое количество воды в конце шага."
+        )
+
+    speed_index = math.ceil(speed) - 1
+
+    if speed_index < 0:
+        raise Exception("Индекс скорости подачи порошка не должен быть отрицательным.")
 
     try:
         discharge_speed = speeds_list[speed_index]
@@ -59,7 +66,8 @@ def get_discharge_speed(drink_name: str, component_name: str, component_weight: 
     except IndexError:
         print(
             f"Компонент \"{component_name}\" в напитке \"{drink_name}\", "
-            f"требуемая скорость: {gr_per_second}. Максимальная: {max_gr}.")
+            f"требуемая скорость: {gr_per_second}. Максимальная: {max_gr}."
+        )
         return speeds_list[-1]
 
     return discharge_speed

@@ -1,13 +1,13 @@
 from src.enums import MixSpeed
 
-DEFAULT_MIX_SPEED = MixSpeed.speed_7
+DEFAULT_MIX_SPEED = MixSpeed.speed_5
 
 WATER_ML_REP_SECOND = 10
 
 COFFEE_SETTINGS = {
-    "prebrewingTime": 2,
-    "prebrewingWaterRatio": 10,
-    "restorationTime": 0.2,
+    "prebrewingTime": 0,
+    "prebrewingWaterRatio": 0,
+    "restorationTime": 0.3,
     "secondSqueezeForce": 90,
     "secondSqueezeTime": 2,
     "squeezeForce": 90,
