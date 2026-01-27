@@ -10,6 +10,8 @@ class BaseStep(BaseModel):
     water_volume: int
     canister_id: int
 
+    is_intensity_variable: IntensityVariable = IntensityVariable.DISABLE
+
     delay_time: int = 0
     add_recipe_time: int = 0
 
@@ -30,5 +32,13 @@ class PowderStep(BaseStep):
     component_weight: int
     mix_speed: MixSpeed = DEFAULT_MIX_SPEED
     discharge_speed: DischargeSpeed
+
     temp_type: TempType = TempType.HOT
-    is_intensity_variable: IntensityVariable = IntensityVariable.DISABLE
+    # is_intensity_variable: IntensityVariable = IntensityVariable.DISABLE
+
+
+class ColdPowderStep(PowderStep):
+    temp_type: TempType = TempType.COLD
+
+class SugarStep(PowderStep):
+    is_intensity_variable: IntensityVariable = IntensityVariable.ENABLE

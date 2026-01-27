@@ -1,0 +1,38 @@
+[
+  {
+    "model": "N JL24",
+    "discharge_speed_settings": {
+      "Сливки": {
+        "min": {
+          "speed": 10,
+          "value": 1.42
+        },
+        "max": {
+          "speed": 120,
+          "value": 5.5
+        }
+      },
+      "Шоколад": {
+        "min": {
+          "speed": 10,
+          "value": 1.42
+        },
+        "max": {
+          "speed": 120,
+          "value": 5.5
+        }
+      }
+    },
+    "canister_config": [
+      {
+        "name": "Бункер_1",
+        "calibration_value": 999
+      },
+      {
+        "name": "Бункер_2",
+        "calibration_value": 666
+      }
+    ]
+  }
+]
+

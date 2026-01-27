@@ -3,7 +3,7 @@ import os
 from pydantic import BaseModel
 
 from src.drink.drink_service import DrinkService
-from src.drink.step import CoffeeStep, WaterStep, PowderStep
+from src.drink.step import CoffeeStep, WaterStep, PowderStep, ColdPowderStep, SugarStep
 from src.drink.step_dispatcher import StepsDispatcher
 from src.models import DrinkModel, ProductModel
 from src.drink.drink_repository import DrinkRepository, DrinkRepositoryImpl
@@ -23,6 +23,8 @@ step_dispatcher.register_component("Вода", WaterStep)
 step_dispatcher.register_component("Сливки", PowderStep)
 step_dispatcher.register_component("Шоколад", PowderStep)
 step_dispatcher.register_component("Ваниль", PowderStep)
+step_dispatcher.register_component("Сахар", SugarStep)
+step_dispatcher.register_component("МШ | Ваниль", ColdPowderStep)
 
 
 def _save_to_file(data: list[BaseModel], file_name: str, file_type: str):
@@ -34,7 +36,7 @@ def _save_to_file(data: list[BaseModel], file_name: str, file_type: str):
 
 
 def main():
-    machine_model = "N JL24"
+    machine_model = "N JL25"
 
     drinks_data: list[DrinkModel] = get_drinks_data()
     drink_service.create_drinks(drinks_data=drinks_data, machine_model=machine_model)
@@ -42,6 +44,8 @@ def main():
     products_data: list[ProductModel] = get_products_data(machine_model)
     products = products_service.create_products(products_data)
     recipes = recipe_service.create_recipes(products_data)
+
+    for item in products: print(item.pic_path)
 
     _save_to_file(products, machine_model, "product")
     _save_to_file(recipes, machine_model, "recipe")

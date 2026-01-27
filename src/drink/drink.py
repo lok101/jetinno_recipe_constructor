@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from typing import Any
 
@@ -26,7 +27,8 @@ class Drink(BaseModel):
 
     @computed_field
     def pic_path(self) -> str:
-        return f"{self.name.replace(' ', '_')}_{self.capacity}"
+        name = re.sub("[()]", "", self.name).lower().replace(" ", "-")
+        return f"{name}-{self.capacity}.png"
 
     @computed_field
     def recipe_name(self) -> str:

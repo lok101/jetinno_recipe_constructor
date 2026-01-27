@@ -8,4 +8,5 @@ dependencies = [
     "gspread>=6.2.1",
     "pip>=25.3",
     "pydantic>=2.12.4",
+    "pydantic-settings>=2.12.0",
 ]

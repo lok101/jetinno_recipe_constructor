@@ -41,7 +41,7 @@ def get_discharge_speed(drink_name: str, component_name: str, component_weight: 
 
     (min_step, min_gr), (max_step, max_gr) = cds
 
-    step_time = water_volume / WATER_ML_REP_SECOND - 1
+    step_time = water_volume / WATER_ML_REP_SECOND
     gr_per_second = component_weight / step_time
 
     linear_k = (max_gr - min_gr) / (max_step - min_step)
@@ -49,11 +49,11 @@ def get_discharge_speed(drink_name: str, component_name: str, component_weight: 
 
     speed = (gr_per_second - linear_b) / linear_k
 
-    if speed % 1 < 0.2:
-        print(
-            f"Компонент \"{component_name}\" в напитке \"{drink_name}\", "
-            f"слишком большой разрыв скорости подачи. Возможно большое количество воды в конце шага."
-        )
+    # if speed % 1 < 0.2:
+    #     print(
+    #         f"Компонент \"{component_name}\" в напитке \"{drink_name}\", "
+    #         f"слишком большой разрыв скорости подачи. Возможно большое количество воды в конце шага."
+    #     )
 
     speed_index = math.ceil(speed) - 1
 
