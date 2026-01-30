@@ -1,9 +1,8 @@
-from datetime import datetime
 from typing import Annotated
 
 from pydantic import BaseModel, BeforeValidator
 
-from src.enums import CupType
+from src.domain.enums import CupType
 
 
 class StepModel(BaseModel):
@@ -14,17 +13,10 @@ class StepModel(BaseModel):
 
 class DrinkModel(BaseModel):
     id: int
-    full_name: str
+    is_active: bool
     name: Annotated[str, BeforeValidator(lambda val: val.strip())]
     capacity: int
+    price: int
     steps: list[StepModel]
-    updated: Annotated[datetime, BeforeValidator(lambda val: datetime.strptime(val, "%d.%m.%Y %H:%M:%S"))]
 
     cup_type: Annotated[CupType | None, BeforeValidator(lambda val: val or None)]
-
-
-class ProductModel(BaseModel):
-    full_name: str
-    matrix_id: int
-    price: int
-    visible: Annotated[bool, BeforeValidator(lambda val: bool(val))]

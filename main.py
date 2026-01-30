@@ -2,21 +2,16 @@ import os
 
 from pydantic import BaseModel
 
-from src.drink.drink_service import DrinkService
+from adapters.get_machine_products import get_machine_drinks
+from enums import MachineModel
+from settings.vending_machines_settings import MachineProfilesSettings
+
 from src.drink.step import CoffeeStep, WaterStep, PowderStep, ColdPowderStep, SugarStep
 from src.drink.step_dispatcher import StepsDispatcher
-from src.models import DrinkModel, ProductModel
 from src.drink.drink_repository import DrinkRepository, DrinkRepositoryImpl
-from src.get_sheet_data import get_drinks_data, get_products_data
-from src.product.product_service import ProductService
-from src.recipe.recipe_service import RecipeService
 
 drink_repo: DrinkRepository = DrinkRepositoryImpl()
 step_dispatcher = StepsDispatcher()
-drink_service = DrinkService(drink_repo, step_dispatcher)
-
-products_service = ProductService(drink_service)
-recipe_service = RecipeService(drink_service)
 
 step_dispatcher.register_component("Кофе", CoffeeStep)
 step_dispatcher.register_component("Вода", WaterStep)
@@ -36,12 +31,19 @@ def _save_to_file(data: list[BaseModel], file_name: str, file_type: str):
 
 
 def main():
-    machine_model = "N JL25"
+    machine_model = MachineModel.JL28
+    profiles = MachineProfilesSettings()
 
-    drinks_data: list[DrinkModel] = get_drinks_data()
-    drink_service.create_drinks(drinks_data=drinks_data, machine_model=machine_model)
+    machine_data = profiles.get_machines_settings(machine_model)
 
-    products_data: list[ProductModel] = get_products_data(machine_model)
+    # drinks_data: list[DrinkModel] = get_drinks_data()
+
+    drinks_data = get_machine_drinks(machine_data.recipe_table_name)
+    pass
+
+    # drink_service.create_drinks(drinks_data=drinks_data, machine_settings=machine_data)
+
+    # products_data: list[ProductModel] = get_products_data(machine_model)
     products = products_service.create_products(products_data)
     recipes = recipe_service.create_recipes(products_data)
 

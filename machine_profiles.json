@@ -1,36 +1,102 @@
 [
   {
-    "model": "N JL24",
-    "discharge_speed_settings": {
-      "Сливки": {
-        "min": {
-          "speed": 10,
-          "value": 1.42
+    "model": "JL28",
+    "water_per_second": 20,
+    "calibration_time": 10,
+    "coffee_per_second": 3.05,
+    "recipe_table_name": "JL28",
+    "containers_data": [
+      {
+        "id": 4,
+        "component_name": "Сливки",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.32
         },
-        "max": {
-          "speed": 120,
-          "value": 5.5
+        "max_speed": {
+          "speed": 9,
+          "quantity": 3.7
         }
       },
-      "Шоколад": {
-        "min": {
-          "speed": 10,
-          "value": 1.42
+      {
+        "id": 2,
+        "component_name": "Раф | Банан",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.75
         },
-        "max": {
-          "speed": 120,
-          "value": 5.5
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.9
+        }
+      },      {
+        "id": 1,
+        "component_name": "Раф | Карамель",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.75
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.9
+        }
+      },
+      {
+        "id": 3,
+        "component_name": "Шоколад",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.52
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.5
         }
       }
-    },
-    "canister_config": [
+    ]
+  },
+  {
+    "model": "JL24",
+    "water_per_second": 10,
+    "calibration_time": 10,
+    "coffee_per_second": 1.3,
+    "recipe_table_name": "JL24",
+    "containers_data": [
       {
-        "name": "Бункер_1",
-        "calibration_value": 999
+        "id": 2,
+        "component_name": "Сливки",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.42
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 3.8
+        }
       },
       {
-        "name": "Бункер_2",
-        "calibration_value": 666
+        "id": 3,
+        "component_name": "Шоколад",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.75
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.76
+        }
+      },
+      {
+        "id": 1,
+        "component_name": "Ваниль",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.77
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.65
+        }
       }
     ]
   }

@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 
-from src.config import DEFAULT_MIX_SPEED
-from src.enums import TempType, IntensityVariable, DischargeSpeed, MixSpeed
+from src.domain.enums import TempType, IntensityVariable, DischargeSpeed, MixSpeed, DEFAULT_MIX_SPEED
 
 
 class BaseStep(BaseModel):
@@ -19,7 +18,7 @@ class BaseStep(BaseModel):
 class WaterStep(BaseStep):
     name: str = "Вода"
     canister_id: int = 0
-    component_weight: None
+    component_weight: None = None
 
 
 class CoffeeStep(BaseStep):
@@ -34,7 +33,6 @@ class PowderStep(BaseStep):
     discharge_speed: DischargeSpeed
 
     temp_type: TempType = TempType.HOT
-    # is_intensity_variable: IntensityVariable = IntensityVariable.DISABLE
 
 
 class ColdPowderStep(PowderStep):

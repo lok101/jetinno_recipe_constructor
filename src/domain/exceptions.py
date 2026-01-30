@@ -1,0 +1,2 @@
+class TooManyComponentWeight(Exception):
+    pass
