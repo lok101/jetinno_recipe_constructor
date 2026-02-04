@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 from src.domain.entities.machine_drink import MachineDrink
 from src.domain.entities.step import BaseStep, PowderStep
-from src.domain.enums import TempType
+from src.domain.enums import DrinkTempType
 
 COFFEE_SETTINGS = {
     "prebrewingTime": 0,
@@ -138,7 +138,7 @@ class SaveDrinkAsProductPackAdapter(SaveDrinksAsFile):
     def _create_product(drink: MachineDrink) -> Product:
         canister_ids: str = drink.get_canister_ids_str()
         pic_path: str = drink.get_pic_path()
-        temp_type: TempType = drink.get_drink_temp_type()
+        temp_type: DrinkTempType = drink.get_drink_temp_type()
 
         return Product(
             id=drink.id,

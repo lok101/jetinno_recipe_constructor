@@ -3,9 +3,13 @@ import enum
 COFFEE_CONTAINER_ID = 170
 WATER_CONTAINER_ID = 0
 
-class TempType(enum.IntEnum):
+class StepTempType(enum.IntEnum):
     HOT = 1
     COLD = 0
+
+class DrinkTempType(enum.StrEnum):
+    HOT = "hot"
+    COLD = "cold"
 
 
 class CupType(enum.IntEnum):

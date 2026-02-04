@@ -2,7 +2,7 @@ import re
 from dataclasses import dataclass
 
 from src.domain.entities.step import BaseStep
-from src.domain.enums import CupType, TempType
+from src.domain.enums import CupType, StepTempType, DrinkTempType
 
 
 @dataclass(frozen=True, slots=True)
@@ -25,9 +25,9 @@ class MachineDrink:
     def get_canister_ids_str(self) -> str:
         return ",".join([str(item.canister_id) for item in self.steps])
 
-    def get_drink_temp_type(self) -> TempType:
+    def get_drink_temp_type(self) -> DrinkTempType:
         for item in self.steps:
-            temp_type = getattr(item, "temp_type", TempType.HOT)
-            if temp_type and temp_type is TempType.COLD:
-                return TempType.COLD
-        return TempType.HOT
+            temp_type = getattr(item, "temp_type", StepTempType.HOT)
+            if temp_type and temp_type is StepTempType.COLD:
+                return DrinkTempType.COLD
+        return DrinkTempType.HOT
