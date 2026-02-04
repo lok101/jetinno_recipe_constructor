@@ -19,6 +19,7 @@ class WaterStep(BaseStep):
     name: str = "Вода"
     canister_id: int = 0
     component_weight: None = None
+    temp_type: TempType = TempType.HOT
 
 
 class CoffeeStep(BaseStep):
