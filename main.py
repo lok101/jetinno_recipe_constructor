@@ -15,6 +15,7 @@ step_dispatcher.register_component(ComponentName.MILK, PowderStep)
 step_dispatcher.register_component(ComponentName.CHOCO, PowderStep)
 step_dispatcher.register_component(ComponentName.VANILLA, PowderStep)
 step_dispatcher.register_component(ComponentName.SUGAR, SugarStep)
+step_dispatcher.register_component(ComponentName.RAF, PowderStep)
 
 step_dispatcher.register_component(ComponentName.RAF_BANAN, PowderStep)
 step_dispatcher.register_component(ComponentName.RAF_CARAMEL, PowderStep)
@@ -33,6 +34,6 @@ app = Application(
     products_constructor=SaveDrinkAsProductPackAdapter(),
     save_canister_config=SaveContainersConfigurationAdapter()
 )
-app.run(machine_model=MachineModel.JL220)
+app.run(machine_model=MachineModel.JL24)
 
 pass

@@ -71,6 +71,7 @@ class ComponentName(enum.StrEnum):
     VANILLA = "Ваниль"
     CHOCO = "Шоколад"
     SUGAR = "Сахар"
+    RAF = "Раф"
 
     RAF_BANAN = "Раф | Банан"
     RAF_CARAMEL = "Раф | Карамель"

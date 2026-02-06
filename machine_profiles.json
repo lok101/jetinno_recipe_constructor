@@ -88,7 +88,7 @@
       },
       {
         "id": 1,
-        "component_name": "Ваниль",
+        "component_name": "Раф",
         "min_speed": {
           "speed": 3,
           "quantity": 1.77

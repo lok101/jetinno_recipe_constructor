@@ -137,8 +137,9 @@ class SaveDrinkAsProductPackAdapter(SaveDrinksAsFile):
     @staticmethod
     def _create_product(drink: MachineDrink) -> Product:
         canister_ids: str = drink.get_canister_ids_str()
-        pic_path: str = drink.get_pic_path()
+        pic_path: str = drink.pic_path
         temp_type: DrinkTempType = drink.get_drink_temp_type()
+        visible: bool = drink.is_active
 
         return Product(
             id=drink.id,
@@ -156,5 +157,5 @@ class SaveDrinkAsProductPackAdapter(SaveDrinksAsFile):
             enable=True,
             best_sell=False,
             save_out=True,
-            visible=True,
+            visible=visible,
         )

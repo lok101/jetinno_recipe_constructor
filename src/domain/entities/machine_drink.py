@@ -2,22 +2,21 @@ import re
 from dataclasses import dataclass
 
 from src.domain.entities.step import BaseStep
-from src.domain.enums import CupType, StepTempType, DrinkTempType
+from src.domain.enums import CupType, StepTempType, DrinkTempType, MachineModel
 
 
 @dataclass(frozen=True, slots=True)
 class MachineDrink:
     id: int
     name: str
+    is_active: bool
     order: int
     price: int
     capacity: int
     cup_type: CupType
     recipe_name: str
     steps: list[BaseStep]
-
-    def get_pic_path(self) -> str:
-        return f"{self.id}.png"
+    pic_path: str
 
     def get_recipe_name(self) -> str:
         return f"{self.name} {self.capacity}"

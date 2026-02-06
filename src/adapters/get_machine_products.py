@@ -19,7 +19,7 @@ class GetDrinksAdapter:
 
         return [
             self._map_to_domain(model, machine_profile, drink_order)
-            for drink_order, model in enumerate(models, 1) if model.is_active
+            for drink_order, model in enumerate(models, 1)
         ]
 
     def _map_to_domain(self, model: DrinkModel, machine_profile: VendingMachineProfile,
@@ -29,15 +29,19 @@ class GetDrinksAdapter:
             for order, step_model in enumerate(model.steps, start=1)
         ]
 
+        pic_path: str = f"{machine_profile.model}_{model.id}.png"
+
         return MachineDrink(
             id=model.id,
             name=model.name,
+            is_active=model.is_active,
             capacity=model.capacity,
             cup_type=model.cup_type or CupType.MEDIUM,
             recipe_name=model.name,
             steps=steps,
             order=drink_order,
             price=model.price,
+            pic_path=pic_path
         )
 
     def _create_step(
