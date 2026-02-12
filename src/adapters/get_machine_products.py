@@ -41,7 +41,8 @@ class GetDrinksAdapter:
             steps=steps,
             order=drink_order,
             price=model.price,
-            pic_path=pic_path
+            pic_path=pic_path,
+            enabled=model.enabled,
         )
 
     def _create_step(

@@ -34,6 +34,6 @@ app = Application(
     products_constructor=SaveDrinkAsProductPackAdapter(),
     save_canister_config=SaveContainersConfigurationAdapter()
 )
-app.run(machine_model=MachineModel.JL24)
+app.run(machine_model=MachineModel.JL28)
 
 pass

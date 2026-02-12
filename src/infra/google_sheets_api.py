@@ -17,7 +17,7 @@ class GoogleSheetsAPI:
         return worksheet.get_values()[1:]
 
     def get_machine_drinks_data(self, sheet_name: str) -> list[DrinkModel]:
-        headers = ["is_active", "id", "name", "drink_name", "capacity", "price", "cup_type", "all_water"]
+        headers = ["enabled, ""is_active", "id", "name", "drink_name", "capacity", "price", "cup_type", "all_water"]
         data = self._get_google_sheets_data(sheet_name)
 
         res = []

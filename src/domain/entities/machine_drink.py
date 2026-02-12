@@ -1,4 +1,3 @@
-import re
 from dataclasses import dataclass
 
 from src.domain.entities.step import BaseStep
@@ -10,6 +9,7 @@ class MachineDrink:
     id: int
     name: str
     is_active: bool
+    enabled: bool
     order: int
     price: int
     capacity: int

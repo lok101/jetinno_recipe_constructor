@@ -13,6 +13,7 @@ class StepModel(BaseModel):
 
 class DrinkModel(BaseModel):
     id: int
+    enabled: bool
     is_active: bool
     name: Annotated[str, BeforeValidator(lambda val: val.strip())]
     capacity: int
