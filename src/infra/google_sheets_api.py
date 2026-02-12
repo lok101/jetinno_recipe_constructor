@@ -17,7 +17,7 @@ class GoogleSheetsAPI:
         return worksheet.get_values()[1:]
 
     def get_machine_drinks_data(self, sheet_name: str) -> list[DrinkModel]:
-        headers = ["enabled, ""is_active", "id", "name", "drink_name", "capacity", "price", "cup_type", "all_water"]
+        headers = ["enabled", "is_active", "id", "name", "drink_name", "capacity", "price", "cup_type", "all_water"]
         data = self._get_google_sheets_data(sheet_name)
 
         res = []
@@ -36,6 +36,7 @@ class GoogleSheetsAPI:
             ]
 
             drink_data["is_active"] = True if drink_data["is_active"] == "TRUE"  else False
+            drink_data["enabled"] = True if drink_data["enabled"] == "TRUE"  else False
 
             drink_model = DrinkModel.model_validate(drink_data)
             res.append(drink_model)

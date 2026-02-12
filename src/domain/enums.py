@@ -81,6 +81,7 @@ class ComponentName(enum.StrEnum):
 
 class MachineModel(enum.StrEnum):
     JL24 = "JL24"
+    JL25 = "JL25"
     JL28 = "JL28"
     JL220 = "JL220"
 

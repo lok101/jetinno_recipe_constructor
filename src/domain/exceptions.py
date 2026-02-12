@@ -2,5 +2,5 @@ class TooManyComponentWeight(Exception):
     pass
 
 
-class DrinkAlreadyExists(Exception):
+class ContainerConflictError(Exception):
     pass
