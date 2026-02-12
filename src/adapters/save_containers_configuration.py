@@ -1,8 +1,9 @@
 import os
 from typing import Annotated
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_serializer
 
+from domain.enums import ComponentName
 from src.domain.entities.vending_machine_profile import VendingMachineProfile
 from src.dtos.container_data_dto import BaseContainerDataDTO
 
@@ -12,6 +13,11 @@ class CanisterConfigModel(BaseModel):
     name: Annotated[str, Field(serialization_alias="canister_name")]
 
     total_product_quantity: Annotated[float, Field(serialization_alias="test_results", default=None)]
+
+    @field_serializer("total_product_quantity")
+    def serialize_total_product_quantity(self, value: float | None) -> float | None:
+        return round(value, 1) if value is not None else value
+
     discharge_speed: Annotated[int, Field(serialization_alias="dischargSpeed", default=None)]
     calibration_time: Annotated[int, Field(serialization_alias="time", default=None)]
 
@@ -32,10 +38,16 @@ class CanistersData(BaseModel):
 
 
 class SaveContainersConfigurationAdapter:
-    def save_to_json(self, machine_profile: VendingMachineProfile):
+    def save_to_json(self, machine_profile: VendingMachineProfile, used_component_names: set[ComponentName]):
         containers_data: list[BaseContainerDataDTO] = machine_profile.get_containers_parameters()
 
-        canisters_data = CanistersData.model_validate({"data": containers_data}, from_attributes=True)
+        # Фильтруем только используемые контейнеры
+        filtered_containers = [
+            container for container in containers_data
+            if container.name in used_component_names
+        ]
+
+        canisters_data = CanistersData.model_validate({"data": filtered_containers}, from_attributes=True)
 
         self._save_to_file(canisters_data)
 

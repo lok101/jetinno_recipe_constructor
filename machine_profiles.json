@@ -168,6 +168,63 @@
         }
       }
     ]
+  },
+  {
+    "model": "JL25",
+    "water_per_second": 10,
+    "calibration_time": 10,
+    "coffee_per_second": 3.05,
+    "recipe_table_name": "JL25",
+    "containers_data": [
+      {
+        "id": 2,
+        "component_name": "Сливки",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.42
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 3.8
+        }
+      },
+      {
+        "id": 3,
+        "component_name": "Шоколад",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.75
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.76
+        }
+      },
+      {
+        "id": 1,
+        "component_name": "Раф",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.77
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 4.65
+        }
+      },
+      {
+        "id": 1,
+        "component_name": "МШ | Ваниль",
+        "min_speed": {
+          "speed": 3,
+          "quantity": 1.4
+        },
+        "max_speed": {
+          "speed": 9,
+          "quantity": 3.7
+        }
+      }
+    ]
   }
 ]
 

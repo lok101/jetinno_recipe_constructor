@@ -152,9 +152,8 @@ class SaveDrinkAsProductPackAdapter(SaveDrinksAsFile):
             pic_path=pic_path,
             canister_ids_str=canister_ids,
             drink_temp_type=str(temp_type),
-
             make_time=60,
-            enable=True,
+            enable=drink.enabled,
             best_sell=False,
             save_out=True,
             visible=visible,
